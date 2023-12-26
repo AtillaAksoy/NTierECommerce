@@ -12,6 +12,15 @@ namespace NTierECommerce.DAL.Context
 {
     public class EcommerceContext:IdentityDbContext<AppUser,AppUserRole,int>
     {
+        public EcommerceContext()
+        {
+            
+        }
+        public EcommerceContext(DbContextOptions<EcommerceContext> options):base(options) 
+        {
+
+        }
+       
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 

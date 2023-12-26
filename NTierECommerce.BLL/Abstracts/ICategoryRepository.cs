@@ -10,5 +10,10 @@ namespace NTierECommerce.BLL.Abstracts
     public interface ICategoryRepository
     {
         IEnumerable<Category> GetAllCategories();
+
+        Task<Category> GetCategoryWithById(int id);
+
+        Task<string> CreateCategory(Category entity);
+        Task<string> UpdateCategory(Category entity);
     }
 }

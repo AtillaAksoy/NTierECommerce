@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NTierECommerce.BLL.Abstracts;
 using NTierECommerce.BLL.Concretes;
 using NTierECommerce.DAL.Context;
@@ -13,7 +13,8 @@ builder.Services.AddDbContext<EcommerceContext>(options => options.UseSqlServer(
 //AddRepositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-//tekrar
+builder.Services.AddScoped<IProductRepository, ProductRepository>();//ProductRepository'yi controller'a ınject edebilmek için
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

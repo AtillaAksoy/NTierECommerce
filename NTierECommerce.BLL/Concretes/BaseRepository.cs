@@ -67,8 +67,9 @@ namespace NTierECommerce.BLL.Concretes
 
         public IEnumerable<T> GetAll()
         {
-            var result = _context.Set<T>().ToList();
-            return result;
+            //var result = _context.Set<T>().ToList();
+            //return result;
+            return _entites.AsEnumerable().ToList();
         }
 
         public IEnumerable<T> GetAllActive()
@@ -92,21 +93,36 @@ namespace NTierECommerce.BLL.Concretes
         public async Task<string> Update(T entity)
         {
             var result = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == entity.Id);
-            try
+            if (result!=null)
             {
-                //_context.Remove(result);
-                // await _context.AddAsync(entity);
-                _context.Entry(result).CurrentValues.SetValues(entity);
-                //_context.Entry(entity).State = EntityState.Modified;
+                try
+                {
+                    //_context.Remove(result);
+                    // await _context.AddAsync(entity);
+                    _context.Entry(result).CurrentValues.SetValues(entity);
+                    //_context.Entry(entity).State = EntityState.Modified;
 
-               await _context.SaveChangesAsync();
-                return "güncelleme başarılı";
+                    await _context.SaveChangesAsync();
+                    return "güncelleme başarılı";
+                }
+                catch (Exception ex)
+                {
+
+                    return ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
-
-                return ex.Message;
+                return "hata";
             }
+           
+            //var updated = await _entities.FirstOrDefaultAsync(x => x.Id == entity.Id);//Nike Airmax
+
+            //_context.Entry(updated).CurrentValues.SetValues(entity);
+
+            //_context.Entry(entity).State = EntityState.Modified;
+
+            //_context.SaveChanges();
         }
     }
 }
