@@ -17,6 +17,7 @@ namespace NTierECommerce.BLL.Abstracts
         //List Passive
         IEnumerable<T> GetAllPassive();
         //Destroy
+        Task<string> DestroyAllData(List<T> entity);
         Task<string> DestroyData (T entity);
         //Create   asyc tanımlamamız gerekiyor 
         Task<string> Create(T entity);

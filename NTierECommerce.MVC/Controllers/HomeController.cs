@@ -22,6 +22,33 @@ namespace NTierECommerce.MVC.Controllers
 
         public IActionResult Index()
         {
+             #region Test İşlemi
+
+            //var categories = _categoryRepository.GetAllCategories();
+            //var activeCategories = _categoryRepository.GetActiveCategories();
+            //var passiveCategories = _categoryRepository.GetPassiveCategories();
+
+            //Category category = new Category
+            //{
+            //    CategoryName = "Test 1",
+            //    Description = "Test Description"
+            //};
+
+            //var result = await _categoryRepository.CreateCategory(category);
+
+            //var updateCategory = await _categoryRepository.GetCategoryWithById(4);
+
+
+            //updateCategory.CategoryName = "Güncellenen 1";
+            //updateCategory.Description = "Güncellenen açıklama";
+            //updateCategory.Status = Entities.Enums.DataStatus.Updated;
+
+            //var updateREsult = await _categoryRepository.UpdateCategory(updateCategory);
+
+            //var silinecekKategori =await _categoryRepository.GetCategoryWithById(4);
+
+            //var deletedResult = await _categoryRepository.DeleteCategory(silinecekKategori); 
+            #endregion
             return View();
         }
 
@@ -36,62 +63,64 @@ namespace NTierECommerce.MVC.Controllers
         #endregion
 
 
+        #region Eski
 
-        //CATEGORY-------------------------------------------------------------------------------------------------------
-        public IActionResult CategoryList()
-        {
-            var categories = _categoryRepository.GetAllCategories();
-            return View(categories);
-        }
-        public async Task<IActionResult> GetCategoryId(int id) 
-        {
-            var category = await _categoryRepository.GetCategoryWithById(id);
-            return View(category);
-        }
+        ////CATEGORY-------------------------------------------------------------------------------------------------------
+        //public IActionResult CategoryList()
+        //{
+        //    var categories = _categoryRepository.GetAllCategories();
+        //    return View(categories);
+        //}
+        //public async Task<IActionResult> GetCategoryId(int id) 
+        //{
+        //    var category = await _categoryRepository.GetCategoryWithById(id);
+        //    return View(category);
+        //}
 
-        public async Task<IActionResult> CreateCategory(Category entity) //burada viewdan ViewModel klasöründeki CategoryVM tipinde oluşturulmuş bir nesne olmalı
-        {
-            //bu bölümde Category class'ını temsilen bir view model oluşturulacak
-            //bu oluşturulan viewModel nesnesi bu metot a parametre olarak verilecek 
-            //bu parametreden alınan ViewModel nesnesi içersindeki property değerleri 
-            //Category tipinde oluşturulan bir category nesnesine set edildikten sonra
-            //aşşağıdaki adımlar izlenecek:
-            string sonuc = await _categoryRepository.CreateCategory(entity); //var sonuc = string bir mesaj dönecek olumlu ise olumlu mesajı
-            //olumsuz ise ex.message yani hata mesajı bir tempdata içersine gelen sonucu yazdırıp view da gösterebiliriz.
-            return View();
-        }
-        //miras alınan sınıflara bağımlı olan metotlar task async await olduğu için controllerda da bu metotları asenkron yapmam gerekti(yapmasaydımda çalışıyordu fakat hata almamak adına.)
-        public async Task<IActionResult> UpdateCategory(Category entity)//VMnesnesi
-        {
-            //VMnesnesini categori klasından üretilmiş bir nesneye çevirmek için kullandığımız Utils Metotu
-            string sonuc = await _categoryRepository.UpdateCategory(entity);//oluşturduğumuz category nesnesini UpdateCategory methodunun parametresine verdik.
-            TempData["updateCategory"]= sonuc;//dönen sonucu tempdata ya atadık(daha sonra bunu view da alert olarak bastırıcaz)
-            return RedirectToAction("Index");
-        }
+        //public async Task<IActionResult> CreateCategory(Category entity) //burada viewdan ViewModel klasöründeki CategoryVM tipinde oluşturulmuş bir nesne olmalı
+        //{
+        //    //bu bölümde Category class'ını temsilen bir view model oluşturulacak
+        //    //bu oluşturulan viewModel nesnesi bu metot a parametre olarak verilecek 
+        //    //bu parametreden alınan ViewModel nesnesi içersindeki property değerleri 
+        //    //Category tipinde oluşturulan bir category nesnesine set edildikten sonra
+        //    //aşşağıdaki adımlar izlenecek:
+        //    string sonuc = await _categoryRepository.CreateCategory(entity); //var sonuc = string bir mesaj dönecek olumlu ise olumlu mesajı
+        //    //olumsuz ise ex.message yani hata mesajı bir tempdata içersine gelen sonucu yazdırıp view da gösterebiliriz.
+        //    return View();
+        //}
+        ////miras alınan sınıflara bağımlı olan metotlar task async await olduğu için controllerda da bu metotları asenkron yapmam gerekti(yapmasaydımda çalışıyordu fakat hata almamak adına.)
+        //public async Task<IActionResult> UpdateCategory(Category entity)//VMnesnesi
+        //{
+        //    //VMnesnesini categori klasından üretilmiş bir nesneye çevirmek için kullandığımız Utils Metotu
+        //    string sonuc = await _categoryRepository.UpdateCategory(entity);//oluşturduğumuz category nesnesini UpdateCategory methodunun parametresine verdik.
+        //    TempData["updateCategory"]= sonuc;//dönen sonucu tempdata ya atadık(daha sonra bunu view da alert olarak bastırıcaz)
+        //    return RedirectToAction("Index");
+        //}
 
-        //PRODUCT-------------------------------------------------------------------------------------------------------
-        public IActionResult ProductList()
-        {
-            var products = _productRepository.GetAllProducts();
-            return View(products);
-        }
-        public async Task<IActionResult> GetProductId(int id)
-        {
-            var product = await _productRepository.GetProductWithById(id);
-            return View(product);
-        }
-        public async Task<IActionResult> CreateProdut(Product entity) 
-        {
-            string sonuc = await _productRepository.CreateProduct(entity);
-            return View();
-        }
-        public async Task<IActionResult> UpdateProduct(Product entity)
-        {
-            string sonuc = await _productRepository.UpdateProduct(entity);
-            TempData["updateProduct"] = sonuc;
-            return RedirectToAction("Index");
-        }
-        //---------------------------------------------------------------------------------------------------------------
+        ////PRODUCT-------------------------------------------------------------------------------------------------------
+        //public IActionResult ProductList()
+        //{
+        //    var products = _productRepository.GetAllProducts();
+        //    return View(products);
+        //}
+        //public async Task<IActionResult> GetProductId(int id)
+        //{
+        //    var product = await _productRepository.GetProductWithById(id);
+        //    return View(product);
+        //}
+        //public async Task<IActionResult> CreateProdut(Product entity) 
+        //{
+        //    string sonuc = await _productRepository.CreateProduct(entity);
+        //    return View();
+        //}
+        //public async Task<IActionResult> UpdateProduct(Product entity)
+        //{
+        //    string sonuc = await _productRepository.UpdateProduct(entity);
+        //    TempData["updateProduct"] = sonuc;
+        //    return RedirectToAction("Index");
+        //}
+        ////--------------------------------------------------------------------------------------------------------------- 
+        #endregion
 
         public IActionResult Privacy()
         {
