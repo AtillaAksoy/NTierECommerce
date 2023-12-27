@@ -15,5 +15,16 @@ namespace NTierECommerce.BLL.Abstracts
 
         Task<string> CreateCategory(Category entity);
         Task<string> UpdateCategory(Category entity);
+
+        IEnumerable<Category> GetActiveCategories();
+        IEnumerable<Category> GetPassiveCategories();
+
+        Task<string> DeleteCategory(Category deleted);
+        //IEnumerable<Category> GetAllCategories();
+
+        //Task<Category> GetCategoryWithById(int id);
+
+        //Task<string> CreateCategory(Category entity);
+        //Task<string> UpdateCategory(Category entity);
     }
 }
